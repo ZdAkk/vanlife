@@ -1,0 +1,564 @@
+/* General */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 1.16rem;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+
+  background-color: #fff7ed;
+
+  min-width: 330px;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.active-link {
+  text-decoration: underline;
+  font-weight: bold;
+  color: purple;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 36.65px;
+
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 22px;
+
+  margin-top: 0;
+}
+
+/* 
+  This is the top layer wrapper for the website. Its children are always header, main, and footer
+  By making the entire page a flex container, we can make sure the footer is at the bottom of the page
+  by giving it a margin top of auto
+*/
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 
+  The outlet element is wrapped with the main element for accessability reasons. Direct children of main 
+  wanting to force the main container to take up the entire viewport must have a flex-grow set to "1"  
+*/
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/*
+  This is a reusable content container. It makes sure we dont excede the max width and have a default width of 90%
+*/
+.content-container {
+  width: 90%;
+  max-width: 800px;
+
+  margin: 2em auto;
+}
+
+/* =================
+Button
+================= */
+.btn {
+  padding: 1em 2em;
+  border: none;
+  border-radius: 10px;
+  background-color: #e17654;
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+
+  cursor: pointer;
+
+  transform: scale(1);
+  transition: transform 250ms;
+
+  width: 100%;
+}
+
+.btn:hover,
+.btn:focus {
+  transform: scale(1.05);
+}
+
+.btn-black {
+  background-color: #161616;
+}
+
+.btn-swamp {
+  background-color: #115e59;
+}
+
+/* =================
+TypeCard
+================= */
+.type-card {
+  padding: 0.6em 1.5em;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffead0;
+  color: #4d4d4d;
+
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+
+  cursor: pointer;
+
+  transform: scale(1);
+  transition: transform 250ms;
+
+  width: fit-content;
+}
+
+.type-card-orange {
+  background-color: #e17654;
+  color: #ffead0;
+}
+
+.type-card-black {
+  background-color: #161616;
+  color: #ffead0;
+}
+
+.type-card-swamp {
+  background-color: #115e59;
+  color: #ffead0;
+}
+
+/* =================
+Header
+================= */
+
+/* Typography */
+
+.site-logo {
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 40px;
+  letter-spacing: 1px;
+  color: black;
+}
+
+.header--nav > a {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 22.92px;
+  color: #161616;
+}
+
+.header--nav > a:hover,
+.header--nav > a:focus {
+  color: purple;
+  text-decoration: underline;
+}
+
+/* Layout */
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 2em;
+  height: 110px;
+
+  background-color: #fff7ed;
+}
+
+.header--nav {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+.profile-logo {
+  margin-bottom: -5px;
+}
+
+@media (max-width: 575px) {
+  .header {
+    height: 230px;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .header--nav {
+    flex-direction: column;
+    gap: 0.5em;
+    margin-top: 1em;
+  }
+}
+
+/* =================
+HostHeader
+================= */
+
+.host-header {
+  display: flex;
+  gap: 1.8em;
+
+  margin: 2em auto 0;
+
+  color: #4d4d4d;
+}
+
+@media (max-width: 500px) {
+  .host-header {
+    gap: 1em;
+    margin: 1em auto 0;
+    flex-wrap: wrap;
+    width: 90%;
+  }
+}
+
+/* =================
+HostVanHeader
+================= */
+
+.host-van-header {
+  display: flex;
+  font-size: 1.2rem;
+  gap: 1.5em;
+  margin: 1em 0;
+}
+
+/* =================
+Footer
+================= */
+
+/* Typography */
+
+footer {
+  color: white;
+  font-family: Inter;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 22.92px;
+  text-align: center;
+  background-color: #252525;
+  line-height: 100px;
+
+  margin-top: auto;
+}
+
+/* Layout */
+
+footer {
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer p {
+  margin: 0;
+  opacity: 60%;
+}
+
+/* =================
+Vans Card
+================= */
+.van-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 350px;
+}
+
+.van-card-img {
+  border-radius: 10px;
+}
+
+.van-card-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 1em 1em 1em 0;
+}
+
+.van-card-info h2 {
+  margin: 0 1em 0 0;
+}
+
+.van-card-info p {
+  margin: 0;
+}
+
+/* =================
+HOME PAGE
+================= */
+
+/* Typography */
+
+.home-container {
+  color: white;
+}
+
+/* Layout */
+
+.home-container {
+  background-image: url("./assets/backgrounds/mountains_background.jpg");
+  background-color: #fbd4a5;
+  background-blend-mode: multiply;
+
+  background-position: center;
+  background-size: cover;
+
+  padding: 2em;
+
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-title {
+  margin-top: 0;
+}
+
+.home button {
+  margin-top: 1.5em;
+}
+
+/* =================
+ABOUT PAGE
+================= */
+
+/* Typography */
+
+.vans-title {
+  margin: 1.5em 0;
+  text-align: center;
+}
+
+/* Layout */
+
+.about-main-image {
+  border-radius: 10px;
+  order: -1;
+
+  margin-bottom: 1em;
+}
+
+.about-bottom-box {
+  background-color: #ffcc8d;
+  padding: 1.6em;
+
+  border-radius: 10px;
+}
+
+/* =================
+VANS PAGE
+================= */
+
+/* Typography */
+
+/* Layout */
+
+.vans-container {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+
+  flex-wrap: wrap;
+}
+
+/* =================
+VAN DETAIL PAGE
+================= */
+
+/* Typography */
+
+.van-card-description {
+  font-weight: 500;
+  line-height: 23.92px;
+  margin-top: 1em;
+  margin-bottom: 2em;
+}
+
+/* Layout */
+
+.van-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-to-vans {
+  display: flex;
+  text-decoration: underline;
+}
+
+.back-to-vans:hover,
+.back-to-vans:focus {
+  color: orange;
+}
+
+.van-container .van-card {
+  max-width: 600px;
+}
+
+.van-container .van-card-img {
+  margin-bottom: 3em;
+}
+
+@media (max-width: 500px) {
+  .van-container .van-card-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+  }
+}
+
+/* =================
+HOST VANS PAGE
+================= */
+
+/* Typography */
+
+.host-van-card-info p {
+  color: #4d4d4d;
+}
+
+/* Layout */
+
+.host-vans-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: flex-start;
+}
+
+.host-van-card {
+  display: flex;
+  padding: 1.4em;
+  background-color: white;
+  gap: 1em;
+
+  width: 100%;
+}
+
+.host-van-card-img {
+  width: 150px;
+  height: 150px;
+
+  border-radius: 10px;
+}
+
+@media (max-width: 500px) {
+  .host-van-card {
+    flex-direction: column;
+  }
+
+  .host-van-card-img {
+    width: 100%;
+    height: unset;
+  }
+}
+
+/* =================
+HOST VAN LAYOUT
+================= */
+
+.host-van-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.host-van-card-general {
+  display: flex;
+  flex-direction: row;
+  gap: 1.3em;
+
+  align-items: center;
+}
+
+.host-van-card-img {
+  width: 250px;
+  height: 250px;
+
+  border-radius: 10px;
+}
+
+@media (max-width: 500px) {
+  .host-van-card-general {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* =================
+HOST VAN DETAILS PAGE
+================= */
+
+.host-van-card-details {
+  margin: 1em 0 0;
+  line-height: 1.4em;
+}
+
+/* =================
+HOST VAN PRICE PAGE
+================= */
+
+.host-van-card-price {
+  color: #4d4d4d;
+}
+
+.host-van-card-price strong {
+  font-size: 2rem;
+  color: black;
+}
+
+/* =================
+HOST VAN PHOTOS PAGE
+================= */
+
+.host-van-card-photos {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.host-van-card-photo {
+  width: 150px;
+  height: 150px;
+
+  border-radius: 10px;
+}
