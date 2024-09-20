@@ -21,7 +21,7 @@ export default function HostVans() {
     <div className="content-container">
       {van ? (
         <>
-          <Link className="back-to-vans" to="/host/vans">
+          <Link className="back-to-vans" to=".." relative="path">
             <IoIosArrowBack />
             <p>Back to all vans</p>
           </Link>
@@ -42,7 +42,7 @@ export default function HostVans() {
                 </p>
               </div>
             </div>
-            <HostVanHeader vanId={id} />
+            <HostVanHeader />
             <Outlet context={van} />
           </div>
         </>

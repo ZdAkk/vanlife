@@ -21,7 +21,7 @@ export default function Van() {
     <div className="content-container van-container">
       {van ? (
         <div className="van-card">
-          <Link className="back-to-vans" to="/vans">
+          <Link className="back-to-vans" to=".." relative="path">
             <IoIosArrowRoundBack />
             <p>Back to all vans</p>
           </Link>
