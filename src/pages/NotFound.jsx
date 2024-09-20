@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
+import { TbError404Off } from "react-icons/tb";
 
 export default function NotFound() {
   return (

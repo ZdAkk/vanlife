@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link, Outlet, useParams } from "react-router-dom";
 import TypeCard from "../../../components/TypeCard";
 import HostVanHeader from "../../../components/Host/Van/HostVanHeader";
+import Loading from "../../../pages/Loading";
 
 export default function HostVans() {
   const { id } = useParams();
