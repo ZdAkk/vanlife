@@ -4,6 +4,7 @@ import TypeCard from "../../components/TypeCard";
 
 export default function Vans() {
   const [vans, setVans] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     fetch("/api/vans")
@@ -14,8 +15,12 @@ export default function Vans() {
       });
   }, []);
 
-  function vansElement() {
-    return vans.map((van) => {
+  const typeFilter = searchParams.get("type");
+  const filteredVans = typeFilter
+    ? vans.filter((van) => van.type.toUpperCase() === typeFilter.toUpperCase())
+    : vans;
+
+  const vansElement = filteredVans.map((van) => {
       return (
         <Link key={van.id} to={`/vans/${van.id}`}>
           <div className="van-card">
@@ -36,13 +41,55 @@ export default function Vans() {
           </div>
         </Link>
       );
+  });
+
+  function handleFilterChange(key, value) {
+    setSearchParams((prevState) => {
+      if (value === null) {
+        prevState.delete(key);
+      } else {
+        // search param already exists and the user clicked on the button again to disable it
+        if (prevState.get(key) === value) {
+          prevState.delete(key);
+        } else {
+          prevState.set(key, value);
+        }
+      }
     });
   }
 
   return (
-    <>
+    <div className="content-container">
       <h1 className="vans-title">Explore our van options</h1>
-      <div className="content-container vans-container">{vansElement()}</div>
-    </>
+      <div className="vans-filter-buttons">
+        <TypeCard
+          onClick={() => handleFilterChange("type", "simple")}
+          type={typeFilter === "simple" && typeFilter}
+        >
+          Simple
+        </TypeCard>
+        <TypeCard
+          onClick={() => handleFilterChange("type", "luxury")}
+          type={typeFilter === "luxury" && typeFilter}
+        >
+          Luxury
+        </TypeCard>
+        <TypeCard
+          onClick={() => handleFilterChange("type", "rugged")}
+          type={typeFilter === "rugged" && typeFilter}
+        >
+          Rugged
+        </TypeCard>
+        {typeFilter && (
+          <button
+            onClick={() => handleFilterChange("type", null)}
+            className="vans-filter-clear"
+          >
+            Clear filters
+          </button>
+        )}
+      </div>
+      <div className="vans-container">{vansElement}</div>
+    </div>
   );
 }
