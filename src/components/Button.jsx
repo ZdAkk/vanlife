@@ -12,6 +12,6 @@ export default function Button({ color, children, className, ...otherProps }) {
 
 Button.propTypes = {
   color: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.node,
   className: PropTypes.string,
 };

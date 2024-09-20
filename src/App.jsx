@@ -13,6 +13,7 @@ import HostVanDetails from "./pages/Host/Vans/Van/HostVanDetails.jsx";
 import HostVanPricing from "./pages/Host/Vans/Van/HostVanPricing.jsx";
 import HostVanPhotos from "./pages/Host/Vans/Van/HostVanPhotos.jsx";
 import HostVanLayout from "./Layouts/Host/Van/HostVanLayout.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
             </Route>
             <Route path="reviews" element={<HostReviews />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
