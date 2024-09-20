@@ -1,17 +1,38 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getHostVans } from "../../../api";
+import Loading from "../../Loading";
+import Error from "../../Error";
 
 export default function HostVans() {
   const [vans, setVans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const hostId = 123;
+
+  const fetchVans = useCallback(async () => {
+    try {
+      const data = await getHostVans(hostId);
+      setVans(data);
+    } catch (error) {
+      setError(error.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
+  }, [hostId]);
 
   useEffect(() => {
-    fetch("/api/host/vans")
-      .then((res) => res.json())
-      .then((data) => {
-        setVans(data.vans);
-      })
-      .catch((error) => console.error("Error fetching host vans: ", error));
-  }, []);
+    fetchVans();
+  }, [fetchVans]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error errorMessage={error} />;
+  }
 
   const vansElement = vans.map((van) => {
     return (
@@ -36,9 +57,7 @@ export default function HostVans() {
   return (
     <div className="content-container">
       <h2>Your listed vans</h2>
-      <div className="host-vans-container">
-        {vans.length !== 0 ? vansElement : <h2>Loading ...</h2>}
-      </div>
+      <div className="host-vans-container">{vansElement}</div>
     </div>
   );
 }

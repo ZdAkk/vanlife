@@ -1,26 +1,45 @@
 import { Link, useSearchParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import TypeCard from "../../components/TypeCard";
+import { getVans } from "../../api";
+import Error from "../Error";
+import Loading from "../Loading";
 
 export default function Vans() {
   const [vans, setVans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-    fetch("/api/vans")
-      .then((res) => res.json())
-      .then((data) => setVans(data.vans))
-      .catch((error) => {
-        console.error("Error fetching Vans data: ", error);
-      });
+  const fetchVans = useCallback(async () => {
+    try {
+      const data = await getVans();
+      setVans(data);
+    } catch (err) {
+      setError(err.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchVans();
+  }, [fetchVans]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error errorMessage={error} />;
+  }
 
   const typeFilter = searchParams.get("type");
   const filteredVans = typeFilter
     ? vans.filter((van) => van.type.toUpperCase() === typeFilter.toUpperCase())
     : vans;
 
-  const vansElement = filteredVans.map((van) => {
+  const vansElement = filteredVans?.map((van) => {
     return (
       <Link
         key={van.id}
