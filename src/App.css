@@ -143,6 +143,11 @@ TypeCard
   width: fit-content;
 }
 
+.type-card:hover,
+.type-card:focus {
+  transform: scale(1.05);
+}
+
 .type-card-orange {
   background-color: #e17654;
   color: #ffead0;
