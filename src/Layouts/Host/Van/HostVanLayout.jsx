@@ -43,7 +43,7 @@ export default function HostVans() {
               </div>
             </div>
             <HostVanHeader />
-            <Outlet context={van} />
+            <Outlet context={{ van }} />
           </div>
         </>
       ) : (
