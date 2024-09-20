@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import TypeCard from "../../components/TypeCard";
 
@@ -21,26 +21,26 @@ export default function Vans() {
     : vans;
 
   const vansElement = filteredVans.map((van) => {
-      return (
-        <Link key={van.id} to={`/vans/${van.id}`}>
-          <div className="van-card">
-            <img
-              className="van-card-img"
-              src={van.imageUrl}
-              alt={`Picture of a ${van.name}`}
-            />
-            <div className="van-card-info">
-              <h2>{van.name}</h2>
-              <p>
-                <strong>€{van.price}</strong>/day
-              </p>
-            </div>
-            <TypeCard type={van.type}>
-              {van.type[0].toUpperCase() + van.type.slice(1)}
-            </TypeCard>
+    return (
+      <Link key={van.id} to={van.id}>
+        <div className="van-card">
+          <img
+            className="van-card-img"
+            src={van.imageUrl}
+            alt={`Picture of a ${van.name}`}
+          />
+          <div className="van-card-info">
+            <h2>{van.name}</h2>
+            <p>
+              <strong>€{van.price}</strong>/day
+            </p>
           </div>
-        </Link>
-      );
+          <TypeCard type={van.type}>
+            {van.type[0].toUpperCase() + van.type.slice(1)}
+          </TypeCard>
+        </div>
+      </Link>
+    );
   });
 
   function handleFilterChange(key, value) {

@@ -22,7 +22,7 @@ export default function HostVans() {
           alt={`Picture of a ${van.name}`}
         />
         <div className="host-van-mini-card-info">
-          <Link to={`/host/vans/${van.id}`}>
+          <Link to={van.id}>
             <h2>{van.name}</h2>
           </Link>
           <p>
