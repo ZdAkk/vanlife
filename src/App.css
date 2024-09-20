@@ -394,14 +394,54 @@ VANS PAGE
 
 /* Typography */
 
+.vans-filter-clear {
+  text-decoration: underline;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 23.92px;
+  color: #4d4d4d;
+  border: none;
+  background-color: unset;
+  cursor: pointer;
+}
+
 /* Layout */
 
 .vans-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 2em;
 
   flex-wrap: wrap;
+}
+
+.vans-filter-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+  margin: 0 0 3em;
+}
+
+.vans-title {
+  text-align: left;
+  margin-bottom: 0.5em;
+}
+
+@media (max-width: 816px) {
+  .vans-container {
+    justify-content: center;
+  }
+
+  .vans-filter-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .vans-title {
+    text-align: center;
+  }
 }
 
 /* =================
@@ -471,8 +511,9 @@ HOST VANS PAGE
   align-items: flex-start;
 }
 
-.host-van-card {
+.host-van-mini-card {
   display: flex;
+
   padding: 1.4em;
   background-color: white;
   gap: 1em;
@@ -480,7 +521,7 @@ HOST VANS PAGE
   width: 100%;
 }
 
-.host-van-card-img {
+.host-van-mini-card-img {
   width: 150px;
   height: 150px;
 
@@ -488,11 +529,11 @@ HOST VANS PAGE
 }
 
 @media (max-width: 500px) {
-  .host-van-card {
+  .host-van-mini-card {
     flex-direction: column;
   }
 
-  .host-van-card-img {
+  .host-van-mini-card-img {
     width: 100%;
     height: unset;
   }
@@ -505,6 +546,11 @@ HOST VAN LAYOUT
 .host-van-card {
   display: flex;
   flex-direction: column;
+  padding: 1.4em;
+  background-color: white;
+  gap: 1em;
+
+  width: 100%;
 }
 
 .host-van-card-general {
