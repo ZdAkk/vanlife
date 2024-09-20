@@ -26,7 +26,6 @@ export default function TypeCard({ type, children, className, ...otherProps }) {
 }
 
 TypeCard.propTypes = {
-  type: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.node,
   className: PropTypes.string,
 };

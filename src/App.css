@@ -93,6 +93,15 @@ main {
   justify-content: center;
   align-items: center;
 }
+
+/* =================
+Error
+================= */
+.error-title {
+  text-align: center;
+  margin: 1em 0;
+}
+
 /* =================
 Button
 ================= */
