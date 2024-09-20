@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import TypeCard from "../../components/TypeCard";
 import Button from "../../components/Button";
 import { IoIosArrowRoundBack } from "react-icons/io";
 
 export default function Van() {
   const params = useParams();
+  const location = useLocation();
   const [van, setVan] = useState(null);
 
   useEffect(() => {
@@ -17,13 +18,20 @@ export default function Van() {
       .catch((error) => console.error("Error Fetching Van Data: ", error));
   }, [params.id]);
 
+  const searchParams = location.state?.search || "";
+  const type = location.state?.type || "all";
+
   return (
     <div className="content-container van-container">
       {van ? (
         <div className="van-card">
-          <Link className="back-to-vans" to=".." relative="path">
+          <Link
+            className="back-to-vans"
+            to={`..?${searchParams}`}
+            relative="path"
+          >
             <IoIosArrowRoundBack />
-            <p>Back to all vans</p>
+            <p>Back to {type} vans</p>
           </Link>
           <img
             className="van-card-img"

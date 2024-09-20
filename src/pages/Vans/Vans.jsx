@@ -22,7 +22,11 @@ export default function Vans() {
 
   const vansElement = filteredVans.map((van) => {
     return (
-      <Link key={van.id} to={van.id}>
+      <Link
+        key={van.id}
+        to={van.id}
+        state={{ search: searchParams.toString(), type: typeFilter }}
+      >
         <div className="van-card">
           <img
             className="van-card-img"
