@@ -9,19 +9,19 @@ export default function Header() {
       </NavLink>
       <nav className="header--nav">
         <NavLink
-          to={"/host"}
+          to={"host"}
           className={({ isActive }) => (isActive ? "active-link" : undefined)}
         >
           Host
         </NavLink>
         <NavLink
-          to={"/about"}
+          to={"about"}
           className={({ isActive }) => (isActive ? "active-link" : undefined)}
         >
           About
         </NavLink>
         <NavLink
-          to={"/vans"}
+          to={"vans"}
           className={({ isActive }) => (isActive ? "active-link" : undefined)}
         >
           Vans
@@ -30,7 +30,7 @@ export default function Header() {
           className={({ isActive }) =>
             isActive ? "active-link profile-logo" : "profile-logo"
           }
-          to={"/profile"}
+          to={"login"}
         >
           <CgProfile />
         </NavLink>

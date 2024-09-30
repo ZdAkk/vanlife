@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../components/Button";
 
 export default function Home() {
@@ -11,9 +12,11 @@ export default function Home() {
           Add adventure to your life by joining the #vanlife movement. Rent the
           perfect van to make your perfect road trip.
         </p>
-        <Button color="orange" size="lg">
-          Find your van
-        </Button>
+        <Link to="vans">
+          <Button color="orange" size="lg">
+            Find your van
+          </Button>
+        </Link>
       </div>
     </div>
   );
